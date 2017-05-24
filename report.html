@@ -290,23 +290,23 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="prompt input_prompt">In&nbsp;[18]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># TODO: Minimum price of the data</span>
-<span class="n">minimum_price</span> <span class="o">=</span> <span class="n">prices</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
+<span class="n">minimum_price</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">prices</span><span class="p">)</span>
 
 <span class="c1"># TODO: Maximum price of the data</span>
-<span class="n">maximum_price</span> <span class="o">=</span> <span class="n">prices</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+<span class="n">maximum_price</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">prices</span><span class="p">)</span>
 
 <span class="c1"># TODO: Mean price of the data</span>
-<span class="n">mean_price</span> <span class="o">=</span> <span class="n">prices</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="n">mean_price</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">prices</span><span class="p">)</span>
 
 <span class="c1"># TODO: Median price of the data</span>
-<span class="n">median_price</span> <span class="o">=</span> <span class="n">prices</span><span class="o">.</span><span class="n">median</span><span class="p">()</span>
+<span class="n">median_price</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">prices</span><span class="p">)</span>
 
 <span class="c1"># TODO: Standard deviation of prices of the data</span>
-<span class="n">std_price</span> <span class="o">=</span> <span class="n">prices</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>
+<span class="n">std_price</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">prices</span><span class="p">)</span>
 
 <span class="c1"># Show the calculated statistics</span>
 <span class="k">print</span> <span class="s2">&quot;Statistics for Boston housing dataset:</span><span class="se">\n</span><span class="s2">&quot;</span>
@@ -333,7 +333,7 @@ Minimum price: $105,000.00
 Maximum price: $1,024,800.00
 Mean price: $454,342.94
 Median price $438,900.00
-Standard deviation of prices: $165,340.28
+Standard deviation of prices: $165,171.13
 </pre>
 </div>
 </div>
@@ -341,6 +341,15 @@ Standard deviation of prices: $165,340.28
 </div>
 </div>
 
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -366,11 +375,11 @@ Standard deviation of prices: $165,340.28
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer:</strong></p>
 <ul>
-<li><p>An increase in RM should imply an increase in MEDV.</p>
+<li><p>An increase in RM should imply an increase in MEDV.  This is because 3 bedroom houses are usually more expensive to 2 bedroom houses which are usually more expensive to 1 bedroom houses which are usually more expensive than studios.</p>
 </li>
-<li><p>An increase in LSTAT should imply a decrease in MEDV.</p>
+<li><p>An increase in LSTAT should imply a decrease in MEDV. LSTAT is hte %age of lower calss homeowners in a neighborhood. That implies that the affordability of the houses will be higher which essentially means the houses are cheaper.</p>
 </li>
-<li><p>An increase in PTRATIO should imply a decrease in MEDV.</p>
+<li><p>An increase in PTRATIO should imply a decrease in MEDV. PTRATIO is the ratio of students to teachers. The higher the PTRATIO implies that the school can afford a lower number of teachers based on their tax collection. Thus its likely that the neighborhood house values will be lower.</p>
 </li>
 </ul>
 
@@ -2257,7 +2266,10 @@ AElFTkSuQmCC
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Answer: Grid search technique allows you to test a combination of different values for different parameters in a bid to optimize them. This way we can maximize the value of the hyperparameters.  </strong></p>
+<p><strong>Answer: Grid search technique allows you to test a combination of different values for different parameters in a bid to optimize them. This way we can maximize the value of the hyperparameters.</strong></p>
+<p>Above our the Grid search is done over max-depth values from 1 to 10 in steps of 1. 
+The output of hte grid search is the value for max-depth at which the model performs highest w.r.t to the metric passed to it (here r-squared). In this case it a max-depth of 5 gives highest r-squared value.</p>
+<p>GridsearchCV implements an <strong>exhaustive</strong> search over all combinations of values of hyper-parameters passed into the function <strong>using r-squared as the guide (i.e. metric to be maximized) </strong>.</p>
 
 </div>
 </div>
@@ -2278,7 +2290,12 @@ AElFTkSuQmCC
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Answer: k-fold cross-validation allows us to optimize the hyperparameters of model without fear of overfitting. This technique makes sure that grid search doesn't overfit the hyperparameters to the training data. </strong></p>
+<p><strong>Answer: </strong> 
+K-fold cross-validation splits the training set into k "folds" or subsets of data and then trains the model using k-1 folds and using the kth fold for testing. This is repeated k-1 times, each time keeping a different fold for testing. Every data point gets to be in a test set exactly once, and gets to be in a training set k-1 times.</p>
+<p>This way we don't "waste" any of the test data in trying to optimize for hyperparameters of the model.</p>
+<p>And since the final metric is an average of all the results on the different k-1 tests it is a much more realistic measure of the metric (w.r.t to our data). In our case the metric was r-squared.</p>
+<p>If we limit the grid search to a single dataset then the grid search will overfit on the training data set and htis is another benefit of doing grid search with cross validated datasets.
+ **</p>
 
 </div>
 </div>
